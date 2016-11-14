@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController @RequestMapping("/submit")
+@RestController @RequestMapping("/rest")
 public class SubmissionController {
 	 
-	@RequestMapping(method=RequestMethod.POST, consumes="application/json", produces="text/plain")
+	@RequestMapping(value="/submit", method=RequestMethod.POST, consumes="application/json", produces="text/plain")
 	 public ResponseEntity submitContributorInfo(@FormParam("testInput") String testInput, @FormParam("contributor") String contributor, @FormParam("subject") String subject, @FormParam("physical_appearance") String physicalAppearance, @FormParam("warrants") String warrants, @FormParam("judgments") String judgments, @FormParam("criminal_history") String criminalHistory) throws JsonParseException, JsonMappingException, IOException, InterruptedException, URISyntaxException {
 		 ObjectMapper mapper = new ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategyBase.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
 		 Contributor c = mapper.readValue(contributor, Contributor.class);
