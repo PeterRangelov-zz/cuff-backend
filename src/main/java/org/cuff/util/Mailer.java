@@ -23,8 +23,7 @@ public class Mailer {
 	private static final String SUBMISSION_SENDER = System.getenv("SUBMISSION_SENDER");
 	private static final String SUBMISSION_RECEPIENT = System.getenv("SUBMISSION_RECEPIENT");
 	private static final String SUBMISSION_BCC = System.getenv("SUBMISSION_BCC");
-	
-	
+		
 	public void sendStartupNotification () {
 		System.out.println("Sendgrid username: " + SENDGRID_USERNAME);
 		System.out.println("Sendgrid api key: " + SENDGRID_API_KEY);
