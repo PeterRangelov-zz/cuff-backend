@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class CuffBackendApplication {
 
 	public static void main(String[] args) {
+		System.out.println("STARTING APPLICATION");
 		SpringApplication.run(CuffBackendApplication.class, args);
 	}
 }

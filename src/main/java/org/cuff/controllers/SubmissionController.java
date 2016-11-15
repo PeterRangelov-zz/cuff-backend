@@ -1,10 +1,10 @@
 package org.cuff.controllers;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.FormParam;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -15,18 +15,29 @@ import org.codehaus.jackson.type.TypeReference;
 
 import org.cuff.dto.*;
 import org.cuff.util.Mailer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController @RequestMapping("/rest")
+@RestController
 public class SubmissionController {
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	 
-	@RequestMapping(value="/submit", method=RequestMethod.POST, consumes="application/json", produces="text/plain")
-	 public ResponseEntity submitContributorInfo(@FormParam("testInput") String testInput, @FormParam("contributor") String contributor, @FormParam("subject") String subject, @FormParam("physical_appearance") String physicalAppearance, @FormParam("warrants") String warrants, @FormParam("judgments") String judgments, @FormParam("criminal_history") String criminalHistory) throws JsonParseException, JsonMappingException, IOException, InterruptedException, URISyntaxException {
+	@RequestMapping(value="/submit", method=RequestMethod.POST, produces="text/plain")
+	@CrossOrigin(origins = "http://localhost:3000")
+	 public ResponseEntity<String> submitContributorInfo(
+			 @RequestParam(value="contributor") String contributor, @RequestParam(value="subject") String subject, @RequestParam(value="physical_appearance") String physicalAppearance, @RequestParam(value="warrants") String warrants, @RequestParam(value="judgments") String judgments, @RequestParam(value="criminal_history") String criminalHistory)
+					 throws JsonParseException, JsonMappingException, IOException, InterruptedException, URISyntaxException {
+		
+		
 		 ObjectMapper mapper = new ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategyBase.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
 		 Contributor c = mapper.readValue(contributor, Contributor.class);
 		 Subject s = mapper.readValue(subject, Subject.class);
@@ -47,7 +58,8 @@ public class SubmissionController {
 		 Mailer mailer = new Mailer();
 		 mailer.emailSubmission(c, s, pa, w, j, ch);
 		 
-		 return ResponseEntity.ok("Got it! " + testInput + contributor);
+		 return new ResponseEntity<String>("Got it! " + contributor, HttpStatus.OK);
+		 
 	 }
 	 	 
 	 

@@ -2,7 +2,7 @@ package org.cuff.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

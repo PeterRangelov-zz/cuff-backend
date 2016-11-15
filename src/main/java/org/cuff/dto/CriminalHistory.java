@@ -1,9 +1,7 @@
 package org.cuff.dto;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,6 +13,4 @@ public class CriminalHistory {
 	private String month;
 	private String year;
 	
-	
-
 }
