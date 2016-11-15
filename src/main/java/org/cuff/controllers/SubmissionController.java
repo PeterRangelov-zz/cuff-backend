@@ -37,7 +37,6 @@ public class SubmissionController {
 			 @RequestParam(value="contributor") String contributor, @RequestParam(value="subject") String subject, @RequestParam(value="physical_appearance") String physicalAppearance, @RequestParam(value="warrants") String warrants, @RequestParam(value="judgments") String judgments, @RequestParam(value="criminal_history") String criminalHistory)
 					 throws JsonParseException, JsonMappingException, IOException, InterruptedException, URISyntaxException {
 		
-		
 		 ObjectMapper mapper = new ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategyBase.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
 		 Contributor c = mapper.readValue(contributor, Contributor.class);
 		 Subject s = mapper.readValue(subject, Subject.class);
