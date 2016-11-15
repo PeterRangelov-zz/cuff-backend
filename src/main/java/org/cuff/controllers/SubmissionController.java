@@ -32,7 +32,7 @@ public class SubmissionController {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	 
 	@RequestMapping(value="/submit", method=RequestMethod.POST, produces="text/plain")
-	@CrossOrigin(origins = {"http://localhost:3000", "https://cuff-ui-staging.herokuapp.com"})
+	@CrossOrigin(origins = {"http://localhost:3000", "https://cuff-ui-staging.herokuapp.com"}) 
 	 public ResponseEntity<String> submitContributorInfo(
 			 @RequestParam(value="contributor") String contributor, @RequestParam(value="subject") String subject, @RequestParam(value="physical_appearance") String physicalAppearance, @RequestParam(value="warrants") String warrants, @RequestParam(value="judgments") String judgments, @RequestParam(value="criminal_history") String criminalHistory)
 					 throws JsonParseException, JsonMappingException, IOException, InterruptedException, URISyntaxException {
